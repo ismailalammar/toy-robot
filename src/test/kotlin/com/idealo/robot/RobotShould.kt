@@ -86,4 +86,26 @@ class RobotShould {
             4 -> assertEquals("4,2,EAST", robot.report())
         }
     }
+
+    @Test
+    fun move_left() {
+        robot.left()
+        robot.move()
+        assertEquals("1,2,WEST" , robot.report())
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = [1, 2, 3, 4]) // Number of times to move up
+    fun stop_moving_left_when_robot_reaches_the_edge(movement: Int){
+        robot.left()
+        repeat(movement) {
+            robot.move()
+        }
+        when (movement % 5) {
+            1 -> assertEquals("1,2,WEST", robot.report())
+            2 -> assertEquals("0,2,WEST", robot.report())
+            3 -> assertEquals("0,2,WEST", robot.report())
+            4 -> assertEquals("0,2,WEST", robot.report())
+        }
+    }
 }

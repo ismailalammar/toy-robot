@@ -20,7 +20,7 @@ class Robot {
 
     fun left(){
         isRobotOnTable()
-        direction = direction?.right()
+        direction = direction?.left()
     }
 
     fun move() {
@@ -29,6 +29,8 @@ class Robot {
             coordinate!!.y = (coordinate!!.y + 1).coerceAtMost(MAX_Y)
         else if(direction == Direction.EAST)
             coordinate!!.x = (coordinate!!.x + 1).coerceAtMost(MAX_X)
+        else if(direction == Direction.WEST)
+            coordinate!!.x = (coordinate!!.x - 1).coerceAtLeast(0)
     }
 
     fun report() : String{
