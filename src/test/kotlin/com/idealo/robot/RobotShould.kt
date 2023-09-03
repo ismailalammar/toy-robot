@@ -6,15 +6,15 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
-
 class RobotShould {
-    private lateinit var robot: Robot;
+    private lateinit var robot: Robot
 
     @BeforeEach
     fun before() {
         robot = Robot()
-        robot.place(0 , 0 , Direction.NORTH)
+        robot.place(2 , 2 , Direction.NORTH)
     }
+
     @ParameterizedTest
     @ValueSource(ints = [1, 2, 3, 4]) // Number of times to rotate right
     fun rotate_right(rotations: Int){
@@ -48,22 +48,20 @@ class RobotShould {
     @Test
     fun move_up(){
         robot.move()
-        assertEquals("0,1,NORTH" , robot.report())
+        assertEquals("2,3,NORTH" , robot.report())
     }
 
     @ParameterizedTest
-    @ValueSource(ints = [1, 2, 3, 4 , 5 , 6]) // Number of times to move up
+    @ValueSource(ints = [1, 2, 3, 4]) // Number of times to move up
     fun stop_moving_up_when_robot_reaches_the_edge(movement: Int){
         repeat(movement) {
             robot.move()
         }
-        when (movement % 7) {
-            1 -> assertEquals("0,1,NORTH", robot.report())
-            2 -> assertEquals("0,2,NORTH", robot.report())
-            3 -> assertEquals("0,3,NORTH", robot.report())
-            4 -> assertEquals("0,4,NORTH", robot.report())
-            5 -> assertEquals("0,4,NORTH", robot.report())
-            6 -> assertEquals("0,4,NORTH", robot.report())
+        when (movement % 5) {
+            1 -> assertEquals("2,3,NORTH", robot.report())
+            2 -> assertEquals("2,4,NORTH", robot.report())
+            3 -> assertEquals("2,4,NORTH", robot.report())
+            4 -> assertEquals("2,4,NORTH", robot.report())
         }
     }
 
@@ -71,23 +69,21 @@ class RobotShould {
     fun move_right(){
         robot.right()
         robot.move()
-        assertEquals("1,0,EAST" , robot.report())
+        assertEquals("3,2,EAST" , robot.report())
     }
 
     @ParameterizedTest
-    @ValueSource(ints = [1, 2, 3, 4 , 5 , 6]) // Number of times to move up
+    @ValueSource(ints = [1, 2, 3, 4]) // Number of times to move up
     fun stop_moving_right_when_robot_reaches_the_edge(movement: Int){
         robot.right()
         repeat(movement) {
             robot.move()
         }
-        when (movement % 7) {
-            1 -> assertEquals("1,0,EAST", robot.report())
-            2 -> assertEquals("2,0,EAST", robot.report())
-            3 -> assertEquals("3,0,EAST", robot.report())
-            4 -> assertEquals("4,0,EAST", robot.report())
-            5 -> assertEquals("4,0,EAST", robot.report())
-            6 -> assertEquals("4,0,EAST", robot.report())
+        when (movement % 5) {
+            1 -> assertEquals("3,2,EAST", robot.report())
+            2 -> assertEquals("4,2,EAST", robot.report())
+            3 -> assertEquals("4,2,EAST", robot.report())
+            4 -> assertEquals("4,2,EAST", robot.report())
         }
     }
 }
