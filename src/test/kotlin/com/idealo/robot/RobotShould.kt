@@ -1,7 +1,7 @@
 package com.idealo.robot
 
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
@@ -23,7 +23,7 @@ class RobotShould {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = [1, 2, 3, 4]) // Number of times to rotate right
+    @ValueSource(ints = [1, 2, 3, 4]) // Number of times to rotate left
     fun rotate_left(rotations: Int){
         var direction = Direction.NORTH
         repeat(rotations) {
@@ -35,5 +35,12 @@ class RobotShould {
             2 -> assertEquals(Direction.SOUTH, direction)
             3 -> assertEquals(Direction.EAST, direction)
         }
+    }
+
+    @Test
+    fun move_up(){
+        var robot = Robot()
+        robot.move()
+        assertEquals("0:1:NORTH" , robot.report())
     }
 }

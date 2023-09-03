@@ -9,7 +9,15 @@ class Robot {
         direction = direction?.right()
     }
 
-    fun report() : String {
+    fun left(){
+        direction = direction?.right()
+    }
+
+    fun move() {
+
+    }
+
+    fun report() : String{
         return "$x,$y,$direction"
     }
 }
