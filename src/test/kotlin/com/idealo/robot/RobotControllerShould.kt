@@ -1,6 +1,7 @@
 package com.idealo.robot
 
 import com.idealo.robot.domain.Direction
+import org.hamcrest.Matchers.anyOf
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -9,14 +10,16 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
+import org.hamcrest.Matchers.`is`
+import org.springframework.test.annotation.DirtiesContext
 
 
 @SpringBootTest
 @AutoConfigureMockMvc
 @DisplayName("Integration Test")
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 class RobotControllerShould {
 
     @Autowired
@@ -79,8 +82,21 @@ class RobotControllerShould {
         assertEquals("3,3,NORTH" , report)
     }
 
-    private fun placeRobot(x: Int ,y: Int, facing: Direction) {
-        mockMvc.perform(MockMvcRequestBuilders.post("/robot/place")
+    @Test
+    fun `should return Robot is missing when try to move robot without placing it initially`() {
+        moveRobot()
+        val report = getRobotReport()
+        assertEquals("Robot is missing" , report)
+    }
+
+    @Test
+    fun `should throw error when trying to place robot outside the valid 5x5 range`() {
+        val result = placeRobot(6 , 6, Direction.NORTH)
+        assertEquals("Invalid robot coordinates: The robot's coordinates should be within the 5x5 tabletop.", result)
+    }
+
+    private fun placeRobot(x: Int ,y: Int, facing: Direction): String {
+        val result= mockMvc.perform(MockMvcRequestBuilders.post("/robot/place")
             .contentType(MediaType.APPLICATION_JSON)
             .content("""
                 {
@@ -90,30 +106,30 @@ class RobotControllerShould {
                 }
             """.trimIndent())
         )
-            .andExpect(MockMvcResultMatchers.status().isOk)
+            .andExpect(status().`is`(anyOf(`is`(200), `is`(400))))
+            .andReturn()
+        return result.response.contentAsString
     }
 
     private fun moveRobot() {
         mockMvc.perform(MockMvcRequestBuilders.post("/robot/move"))
-            .andExpect(MockMvcResultMatchers.status().isOk)
+            .andExpect(status().`is`(anyOf(`is`(200), `is`(400))))
     }
 
     private fun rotateRobotToLeft() {
         mockMvc.perform(MockMvcRequestBuilders.post("/robot/left"))
-            .andExpect(MockMvcResultMatchers.status().isOk)
+            .andExpect(status().`is`(anyOf(`is`(200), `is`(400))))
     }
 
     private fun rotateRobotToRight() {
         mockMvc.perform(MockMvcRequestBuilders.post("/robot/right"))
-            .andExpect(MockMvcResultMatchers.status().isOk)
+            .andExpect(status().`is`(anyOf(`is`(200), `is`(400))))
     }
 
     private fun getRobotReport(): String {
         val result = mockMvc.perform(MockMvcRequestBuilders.post("/robot/report"))
-            .andExpect(MockMvcResultMatchers.status().isOk)
-            .andDo(MockMvcResultHandlers.print())
+            .andExpect(status().`is`(anyOf(`is`(200), `is`(400))))
             .andReturn()
-
          return result.response.contentAsString
     }
 }
