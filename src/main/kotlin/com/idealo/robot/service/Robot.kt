@@ -1,5 +1,7 @@
-package com.idealo.robot
+package com.idealo.robot.service
 
+import com.idealo.robot.domain.Direction
+import com.idealo.robot.model.Coordinate
 import org.springframework.stereotype.Service
 
 @Service
@@ -16,26 +18,27 @@ class Robot(
     }
 
     fun right(){
-        isRobotOnTable()
+        validateRobotOnTable()
         direction = direction?.right()
     }
 
     fun left(){
-        isRobotOnTable()
+        validateRobotOnTable()
         direction = direction?.left()
     }
 
     fun move() {
-        isRobotOnTable()
+        validateRobotOnTable()
         coordinate = gridTable.nextMoveFor(coordinate!!, direction!!)
     }
 
     fun report() : String{
+        validateRobotOnTable()
         return "${coordinate?.x},${coordinate?.y},$direction"
     }
 
-    private fun isRobotOnTable() {
-        if(coordinate == null || direction == null)
-            throw IllegalArgumentException("robot is missing")
+    private fun validateRobotOnTable() {
+        requireNotNull(coordinate) { "Robot is missing coordinates" }
+        requireNotNull(direction) { "Robot is missing direction" }
     }
 }

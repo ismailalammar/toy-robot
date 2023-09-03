@@ -1,4 +1,4 @@
-package com.idealo.robot
+package com.idealo.robot.domain
 
 enum class Direction(
     private val value: String,
@@ -18,10 +18,6 @@ enum class Direction(
         return directionMatching(left)
     }
 
-    fun value(): String {
-        return value
-    }
-
     private fun directionMatching(value: String): Direction? {
         for (direction in values()) {
             if (direction.value == value) {
@@ -30,5 +26,4 @@ enum class Direction(
         }
         return null
     }
-
 }

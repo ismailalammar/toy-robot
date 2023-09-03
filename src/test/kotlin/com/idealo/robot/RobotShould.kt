@@ -1,5 +1,7 @@
 package com.idealo.robot
 
+import com.idealo.robot.domain.Direction
+import com.idealo.robot.service.Robot
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

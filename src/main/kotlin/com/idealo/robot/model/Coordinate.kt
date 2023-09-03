@@ -1,3 +1,3 @@
-package com.idealo.robot
+package com.idealo.robot.model
 
 data class Coordinate(var x: Int, var y: Int)
