@@ -21,4 +21,19 @@ class RobotShould {
             3 -> assertEquals(Direction.WEST, direction)
         }
     }
+
+    @ParameterizedTest
+    @ValueSource(ints = [1, 2, 3, 4]) // Number of times to rotate right
+    fun rotate_left(rotations: Int){
+        var direction = Direction.NORTH
+        repeat(rotations) {
+            direction = direction.left()!!
+        }
+        when (rotations % 4) {
+            0 -> assertEquals(Direction.NORTH, direction)
+            1 -> assertEquals(Direction.WEST, direction)
+            2 -> assertEquals(Direction.SOUTH, direction)
+            3 -> assertEquals(Direction.EAST, direction)
+        }
+    }
 }
