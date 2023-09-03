@@ -1,6 +1,10 @@
 package com.idealo.robot
 
 class Robot {
+    companion object {
+        const val MAX_X = 4
+        const val MAX_Y = 4
+    }
     private var coordinate = Coordinate(0 , 0)
     private var direction: Direction? = Direction.NORTH
 
@@ -13,10 +17,8 @@ class Robot {
     }
 
     fun move() {
-        var y = coordinate.y
         if(direction == Direction.NORTH)
-            y++
-        coordinate = Coordinate(coordinate.x , y)
+            coordinate.y = (coordinate.y + 1).coerceAtMost(MAX_Y)
     }
 
     fun report() : String{
