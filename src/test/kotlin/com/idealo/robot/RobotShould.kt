@@ -68,4 +68,22 @@ class RobotShould {
         robot.move()
         assertEquals("1,0,EAST" , robot.report())
     }
+
+    @ParameterizedTest
+    @ValueSource(ints = [1, 2, 3, 4 , 5 , 6]) // Number of times to move up
+    fun stop_moving_right_when_robot_reaches_the_edge(movement: Int){
+        val robot = Robot()
+        robot.right()
+        repeat(movement) {
+            robot.move()
+        }
+        when (movement % 7) {
+            1 -> assertEquals("1,0,EAST", robot.report())
+            2 -> assertEquals("2,0,EAST", robot.report())
+            3 -> assertEquals("3,0,EAST", robot.report())
+            4 -> assertEquals("4,0,EAST", robot.report())
+            5 -> assertEquals("4,0,EAST", robot.report())
+            6 -> assertEquals("4,0,EAST", robot.report())
+        }
+    }
 }

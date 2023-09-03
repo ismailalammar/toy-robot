@@ -19,6 +19,8 @@ class Robot {
     fun move() {
         if(direction == Direction.NORTH)
             coordinate.y = (coordinate.y + 1).coerceAtMost(MAX_Y)
+        else if(direction == Direction.EAST)
+            coordinate.x = (coordinate.x + 1).coerceAtMost(MAX_X)
     }
 
     fun report() : String{
