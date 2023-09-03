@@ -1,0 +1,38 @@
+# Gradle
+.gradle/
+build/
+.idea/
+
+# Compiled class files
+**/*.class
+
+# Log files
+*.log
+
+# IntelliJ IDEA files
+*.iml
+.idea/
+
+# Eclipse files
+.classpath
+.project
+.settings/
+
+# Compiled Kotlin files
+*.kotlin_module
+
+# Spring Boot
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+# Kotlin
+.idea_modules/
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.swp
+*~
