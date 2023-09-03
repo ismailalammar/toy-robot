@@ -1,6 +1,5 @@
 package com.idealo.robot.controller
 
-import com.idealo.robot.domain.Direction
 import com.idealo.robot.model.Robot
 import com.idealo.robot.model.RobotPlace
 import com.idealo.robot.service.RobotService
