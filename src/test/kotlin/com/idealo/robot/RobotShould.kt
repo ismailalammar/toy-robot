@@ -60,4 +60,12 @@ class RobotShould {
             6 -> assertEquals("0,4,NORTH", robot.report())
         }
     }
+
+    @Test
+    fun move_right(){
+        val robot = Robot()
+        robot.right()
+        robot.move()
+        assertEquals("1,0,EAST" , robot.report())
+    }
 }
