@@ -16,6 +16,8 @@ class GridTable {
             coordinate.x = (coordinate.x + 1).coerceAtMost(MAX_X)
         else if(direction == Direction.WEST)
             coordinate.x = (coordinate.x - 1).coerceAtLeast(0)
+        else if(direction == Direction.SOUTH)
+            coordinate.y = (coordinate.y - 1).coerceAtLeast(0)
 
         return coordinate
     }
