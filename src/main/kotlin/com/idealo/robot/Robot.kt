@@ -1,8 +1,7 @@
 package com.idealo.robot
 
 class Robot {
-    private var x: Int = 0
-    private var y: Int = 0
+    private var coordinate = Coordinate(0 , 0)
     private var direction: Direction? = Direction.NORTH
 
     fun right(){
@@ -14,10 +13,13 @@ class Robot {
     }
 
     fun move() {
-
+        var y = coordinate.y
+        if(direction == Direction.NORTH)
+            y++
+        coordinate = Coordinate(coordinate.x , y)
     }
 
     fun report() : String{
-        return "$x,$y,$direction"
+        return "${coordinate.x},${coordinate.y},$direction"
     }
 }

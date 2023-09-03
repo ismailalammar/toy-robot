@@ -39,8 +39,8 @@ class RobotShould {
 
     @Test
     fun move_up(){
-        var robot = Robot()
+        val robot = Robot()
         robot.move()
-        assertEquals("0:1:NORTH" , robot.report())
+        assertEquals("0,1,NORTH" , robot.report())
     }
 }
