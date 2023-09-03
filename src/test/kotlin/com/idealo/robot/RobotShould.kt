@@ -21,7 +21,7 @@ class RobotShould {
 
     @ParameterizedTest
     @ValueSource(ints = [1, 2, 3, 4]) // Number of times to rotate right
-    fun rotate_right(rotations: Int){
+    fun `rotate right multiple times`(rotations: Int){
         var direction = Direction.NORTH
         repeat(rotations) {
             direction = direction.right()!!
@@ -36,7 +36,7 @@ class RobotShould {
 
     @ParameterizedTest
     @ValueSource(ints = [1, 2, 3, 4]) // Number of times to rotate left
-    fun rotate_left(rotations: Int){
+    fun `rotate left multiple times`(rotations: Int){
         var direction = Direction.NORTH
         repeat(rotations) {
             direction = direction.left()!!
@@ -50,14 +50,14 @@ class RobotShould {
     }
 
     @Test
-    fun move_up(){
+    fun `move up when the direction is north`(){
         robot.move()
         assertEquals("2,3,NORTH" , robot.report())
     }
 
     @ParameterizedTest
     @ValueSource(ints = [1, 2, 3, 4]) // Number of times to move up
-    fun stop_moving_up_when_robot_reaches_the_edge(movement: Int){
+    fun `stop moving up when robot reaches the edge`(movement: Int){
         repeat(movement) {
             robot.move()
         }
@@ -70,7 +70,7 @@ class RobotShould {
     }
 
     @Test
-    fun move_right(){
+    fun `move right when direction is east`(){
         robot.right()
         robot.move()
         assertEquals("3,2,EAST" , robot.report())
@@ -78,7 +78,7 @@ class RobotShould {
 
     @ParameterizedTest
     @ValueSource(ints = [1, 2, 3, 4]) // Number of times to move up
-    fun stop_moving_right_when_robot_reaches_the_edge(movement: Int){
+    fun `stop moving right when robot reaches the edge`(movement: Int){
         robot.right()
         repeat(movement) {
             robot.move()
@@ -92,7 +92,7 @@ class RobotShould {
     }
 
     @Test
-    fun move_left() {
+    fun `move left when direction is west`() {
         robot.left()
         robot.move()
         assertEquals("1,2,WEST" , robot.report())
@@ -100,7 +100,7 @@ class RobotShould {
 
     @ParameterizedTest
     @ValueSource(ints = [1, 2, 3, 4]) // Number of times to move up
-    fun stop_moving_left_when_robot_reaches_the_edge(movement: Int){
+    fun `stop moving left when robot reaches the edge`(movement: Int){
         robot.left()
         repeat(movement) {
             robot.move()
@@ -114,7 +114,7 @@ class RobotShould {
     }
 
     @Test
-    fun move_down() {
+    fun `move down when direction is south`() {
         robot.left()
         robot.left()
         robot.move()
@@ -123,7 +123,7 @@ class RobotShould {
 
     @ParameterizedTest
     @ValueSource(ints = [1, 2, 3, 4]) // Number of times to move up
-    fun stop_moving_down_when_robot_reaches_the_edge(movement: Int){
+    fun `stop moving down when robot reaches the edge`(movement: Int){
         robot.left()
         robot.left()
         repeat(movement) {
