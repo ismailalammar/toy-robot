@@ -1,12 +1,20 @@
 package com.idealo.robot
 
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
 
 class RobotShould {
+    private lateinit var robot: Robot;
+
+    @BeforeEach
+    fun before() {
+        robot = Robot()
+        robot.place(0 , 0 , Direction.NORTH)
+    }
     @ParameterizedTest
     @ValueSource(ints = [1, 2, 3, 4]) // Number of times to rotate right
     fun rotate_right(rotations: Int){
@@ -39,7 +47,6 @@ class RobotShould {
 
     @Test
     fun move_up(){
-        val robot = Robot()
         robot.move()
         assertEquals("0,1,NORTH" , robot.report())
     }
@@ -47,7 +54,6 @@ class RobotShould {
     @ParameterizedTest
     @ValueSource(ints = [1, 2, 3, 4 , 5 , 6]) // Number of times to move up
     fun stop_moving_up_when_robot_reaches_the_edge(movement: Int){
-        val robot = Robot()
         repeat(movement) {
             robot.move()
         }
@@ -63,7 +69,6 @@ class RobotShould {
 
     @Test
     fun move_right(){
-        val robot = Robot()
         robot.right()
         robot.move()
         assertEquals("1,0,EAST" , robot.report())
@@ -72,7 +77,6 @@ class RobotShould {
     @ParameterizedTest
     @ValueSource(ints = [1, 2, 3, 4 , 5 , 6]) // Number of times to move up
     fun stop_moving_right_when_robot_reaches_the_edge(movement: Int){
-        val robot = Robot()
         robot.right()
         repeat(movement) {
             robot.move()
