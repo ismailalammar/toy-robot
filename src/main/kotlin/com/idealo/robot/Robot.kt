@@ -1,10 +1,12 @@
 package com.idealo.robot
 
-class Robot {
-    companion object {
-        const val MAX_X = 4
-        const val MAX_Y = 4
-    }
+import org.springframework.stereotype.Service
+
+@Service
+class Robot(
+    private var gridTable: GridTable
+) {
+
     private var coordinate: Coordinate? = null
     private var direction: Direction? = null
 
@@ -25,12 +27,7 @@ class Robot {
 
     fun move() {
         isRobotOnTable()
-        if(direction == Direction.NORTH)
-            coordinate!!.y = (coordinate!!.y + 1).coerceAtMost(MAX_Y)
-        else if(direction == Direction.EAST)
-            coordinate!!.x = (coordinate!!.x + 1).coerceAtMost(MAX_X)
-        else if(direction == Direction.WEST)
-            coordinate!!.x = (coordinate!!.x - 1).coerceAtLeast(0)
+        coordinate = gridTable.nextMoveFor(coordinate!!, direction!!)
     }
 
     fun report() : String{
