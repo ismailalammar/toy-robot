@@ -85,7 +85,7 @@ class RobotShould {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = [1, 2, 3, 4]) // Number of times to move up
+    @ValueSource(ints = [1, 2, 3, 4]) // Number of times to move right
     fun `stop moving right when robot reaches the edge`(movement: Int){
         robotService.right(robot)
         repeat(movement) {
@@ -107,7 +107,7 @@ class RobotShould {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = [1, 2, 3, 4]) // Number of times to move up
+    @ValueSource(ints = [1, 2, 3, 4]) // Number of times try to move up
     fun `stop moving left when robot reaches the edge`(movement: Int){
         robotService.left(robot)
         repeat(movement) {
@@ -130,7 +130,7 @@ class RobotShould {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = [1, 2, 3, 4]) // Number of times to move up
+    @ValueSource(ints = [1, 2, 3, 4]) // Number of times try to move down
     fun `stop moving down when robot reaches the edge`(movement: Int){
         robotService.left(robot)
         robotService.left(robot)

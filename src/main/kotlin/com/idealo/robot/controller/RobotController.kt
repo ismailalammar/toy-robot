@@ -19,24 +19,18 @@ class RobotController(
     fun place(@RequestBody robotPlace: RobotPlace) {
         robotService.place(robot, robotPlace.x, robotPlace.y, robotPlace.facing)
     }
-
     @PostMapping("/left")
     fun left() {
         robotService.left(robot)
     }
-
     @PostMapping("/right")
     fun right() {
         robotService.right(robot)
     }
-
-
     @PostMapping("/move")
     fun move() {
         robotService.move(robot)
     }
-
-
     @PostMapping("/report")
     fun report() : String {
         return robotService.report(robot)

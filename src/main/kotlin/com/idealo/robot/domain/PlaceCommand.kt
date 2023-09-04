@@ -14,5 +14,4 @@ class PlaceCommand( private val robot: Robot,
         robot.coordinate = Coordinate(x , y)
         robot.facing = direction
     }
-
 }

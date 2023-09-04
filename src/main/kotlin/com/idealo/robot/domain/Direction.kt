@@ -13,11 +13,9 @@ enum class Direction(
     fun right(): Direction? {
         return directionMatching(right)
     }
-
     fun left(): Direction? {
         return directionMatching(left)
     }
-
     private fun directionMatching(value: String): Direction? {
         for (direction in values()) {
             if (direction.value == value) {

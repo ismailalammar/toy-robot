@@ -13,7 +13,6 @@ class Handler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
             .body(e.message)
     }
-
     @ExceptionHandler(RuntimeException::class)
     fun handleGeneralException(e: RuntimeException): ResponseEntity<String> {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
