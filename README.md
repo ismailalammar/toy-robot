@@ -28,7 +28,7 @@ The goal of this application is to create a Spring Boot application that simulat
 
 ## REST API Endpoints
 
-### `POST /api/robot/place`
+### `POST /robot/place`
 
 This endpoint allows you to place the robot on the table. The request body should be in JSON format with the following structure:
 
