@@ -12,13 +12,8 @@ class RobotService(
     private var robotCommandFactory: RobotCommandFactory,
     private var robot: Robot
     ) {
-    fun executeCommand(commandType: RobotCommandType, robotPlace: RobotPlace? = null) {
+    fun executeCommand(commandType: RobotCommandType, robotPlace: RobotPlace? = null): String? {
         val command = robotCommandFactory.createCommand(commandType, robot, robotPlace)
-        command.execute()
-    }
-
-    fun report(robot: Robot) : String{
-        RobotTabletop.validateRobotOnTable(this.robot)
-        return "${this.robot.coordinate?.x},${this.robot.coordinate?.y},${this.robot.facing}"
+        return command.execute()
     }
 }

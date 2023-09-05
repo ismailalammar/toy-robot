@@ -16,6 +16,7 @@ class RobotCommandFactory(
             LEFT -> LeftCommand(robot)
             RIGHT -> RightCommand(robot)
             MOVE -> MoveCommand(robot, gridTable)
+            REPORT -> ReportCommand(robot)
         }
     }
 }

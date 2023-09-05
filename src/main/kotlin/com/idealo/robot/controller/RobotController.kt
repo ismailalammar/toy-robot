@@ -1,7 +1,6 @@
 package com.idealo.robot.controller
 
 import com.idealo.robot.domain.RobotCommandType
-import com.idealo.robot.model.Robot
 import com.idealo.robot.model.RobotPlace
 import com.idealo.robot.service.RobotService
 import org.springframework.web.bind.annotation.PostMapping
@@ -14,8 +13,6 @@ import org.springframework.web.bind.annotation.RestController
 class RobotController(
     private var robotService: RobotService
 ) {
-    private val robot = Robot()
-
     @PostMapping("/place")
     fun place(@RequestBody robotPlace: RobotPlace) {
         robotService.executeCommand(RobotCommandType.PLACE, robotPlace)
@@ -33,7 +30,7 @@ class RobotController(
         robotService.executeCommand(RobotCommandType.MOVE)
     }
     @PostMapping("/report")
-    fun report() : String {
-        return robotService.report(robot)
+    fun report() : String? {
+        return robotService.executeCommand(RobotCommandType.REPORT)
     }
 }

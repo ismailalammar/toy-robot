@@ -59,7 +59,7 @@ class RobotShould {
     @Test
     fun `move up when the direction is north`(){
         robotService.executeCommand(RobotCommandType.MOVE)
-        assertEquals("2,3,NORTH" , robotService.report(robot))
+        assertEquals("2,3,NORTH" , robotService.executeCommand(RobotCommandType.REPORT))
     }
 
     @ParameterizedTest
@@ -69,10 +69,10 @@ class RobotShould {
             robotService.executeCommand(RobotCommandType.MOVE)
         }
         when (movement % 5) {
-            1 -> assertEquals("2,3,NORTH", robotService.report(robot))
-            2 -> assertEquals("2,4,NORTH", robotService.report(robot))
-            3 -> assertEquals("2,4,NORTH", robotService.report(robot))
-            4 -> assertEquals("2,4,NORTH", robotService.report(robot))
+            1 -> assertEquals("2,3,NORTH", robotService.executeCommand(RobotCommandType.REPORT))
+            2 -> assertEquals("2,4,NORTH", robotService.executeCommand(RobotCommandType.REPORT))
+            3 -> assertEquals("2,4,NORTH", robotService.executeCommand(RobotCommandType.REPORT))
+            4 -> assertEquals("2,4,NORTH", robotService.executeCommand(RobotCommandType.REPORT))
         }
     }
 
@@ -80,7 +80,7 @@ class RobotShould {
     fun `move right when direction is east`(){
         robotService.executeCommand(RobotCommandType.RIGHT)
         robotService.executeCommand(RobotCommandType.MOVE)
-        assertEquals("3,2,EAST" , robotService.report(robot))
+        assertEquals("3,2,EAST" , robotService.executeCommand(RobotCommandType.REPORT))
     }
 
     @ParameterizedTest
@@ -91,10 +91,10 @@ class RobotShould {
             robotService.executeCommand(RobotCommandType.MOVE)
         }
         when (movement % 5) {
-            1 -> assertEquals("3,2,EAST", robotService.report(robot))
-            2 -> assertEquals("4,2,EAST", robotService.report(robot))
-            3 -> assertEquals("4,2,EAST", robotService.report(robot))
-            4 -> assertEquals("4,2,EAST", robotService.report(robot))
+            1 -> assertEquals("3,2,EAST", robotService.executeCommand(RobotCommandType.REPORT))
+            2 -> assertEquals("4,2,EAST", robotService.executeCommand(RobotCommandType.REPORT))
+            3 -> assertEquals("4,2,EAST", robotService.executeCommand(RobotCommandType.REPORT))
+            4 -> assertEquals("4,2,EAST", robotService.executeCommand(RobotCommandType.REPORT))
         }
     }
 
@@ -102,7 +102,7 @@ class RobotShould {
     fun `move left when direction is west`() {
         robotService.executeCommand(RobotCommandType.LEFT)
         robotService.executeCommand(RobotCommandType.MOVE)
-        assertEquals("1,2,WEST" , robotService.report(robot))
+        assertEquals("1,2,WEST" , robotService.executeCommand(RobotCommandType.REPORT))
     }
 
     @ParameterizedTest
@@ -113,10 +113,10 @@ class RobotShould {
             robotService.executeCommand(RobotCommandType.MOVE)
         }
         when (movement % 5) {
-            1 -> assertEquals("1,2,WEST", robotService.report(robot))
-            2 -> assertEquals("0,2,WEST", robotService.report(robot))
-            3 -> assertEquals("0,2,WEST", robotService.report(robot))
-            4 -> assertEquals("0,2,WEST", robotService.report(robot))
+            1 -> assertEquals("1,2,WEST", robotService.executeCommand(RobotCommandType.REPORT))
+            2 -> assertEquals("0,2,WEST", robotService.executeCommand(RobotCommandType.REPORT))
+            3 -> assertEquals("0,2,WEST", robotService.executeCommand(RobotCommandType.REPORT))
+            4 -> assertEquals("0,2,WEST", robotService.executeCommand(RobotCommandType.REPORT))
         }
     }
 
@@ -125,7 +125,7 @@ class RobotShould {
         robotService.executeCommand(RobotCommandType.LEFT)
         robotService.executeCommand(RobotCommandType.LEFT)
         robotService.executeCommand(RobotCommandType.MOVE)
-        assertEquals("2,1,SOUTH" , robotService.report(robot))
+        assertEquals("2,1,SOUTH" , robotService.executeCommand(RobotCommandType.REPORT))
     }
 
     @ParameterizedTest
@@ -137,10 +137,10 @@ class RobotShould {
             robotService.executeCommand(RobotCommandType.MOVE)
         }
         when (movement % 5) {
-            1 -> assertEquals("2,1,SOUTH", robotService.report(robot))
-            2 -> assertEquals("2,0,SOUTH", robotService.report(robot))
-            3 -> assertEquals("2,0,SOUTH", robotService.report(robot))
-            4 -> assertEquals("2,0,SOUTH", robotService.report(robot))
+            1 -> assertEquals("2,1,SOUTH", robotService.executeCommand(RobotCommandType.REPORT))
+            2 -> assertEquals("2,0,SOUTH", robotService.executeCommand(RobotCommandType.REPORT))
+            3 -> assertEquals("2,0,SOUTH", robotService.executeCommand(RobotCommandType.REPORT))
+            4 -> assertEquals("2,0,SOUTH", robotService.executeCommand(RobotCommandType.REPORT))
         }
     }
 }
