@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
 
 @ControllerAdvice
-class Handler {
+class RobotExceptionHandler {
 
     @ExceptionHandler(RobotException::class)
     fun handleRobotException(e: RobotException): ResponseEntity<String> {
