@@ -73,6 +73,7 @@ In this example, the robot is located at coordinates (0, 1) and is facing to the
 
 ## Implementation Details
 - This application uses the Command Design Pattern to encapsulate each command (PLACE, MOVE, LEFT, RIGHT, REPORT) as an object.
+- The Factory Design Pattern is used to create instances of command objects.
 - These command objects are executed based on user input, and the robot's state is updated accordingly.
 
 **Note:** This application does not provide graphical output for the movement of the toy robot, as it focuses solely on the simulation and REST API interaction.
