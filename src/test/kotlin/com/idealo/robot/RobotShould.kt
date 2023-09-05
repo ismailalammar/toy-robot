@@ -1,7 +1,9 @@
 package com.idealo.robot
 
 import com.idealo.robot.domain.Direction
+import com.idealo.robot.domain.RobotCommandType
 import com.idealo.robot.model.Robot
+import com.idealo.robot.model.RobotPlace
 import com.idealo.robot.service.RobotService
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
@@ -14,16 +16,13 @@ import org.springframework.boot.test.context.SpringBootTest
 @SpringBootTest
 class RobotShould {
     @Autowired private lateinit var robotService: RobotService
-    private lateinit var robot: Robot
+    @Autowired private lateinit var robot: Robot
 
     @BeforeEach
     fun before() {
-        robot = Robot()
-        robotService.place(
-            robot,
-            2,
-            2,
-            Direction.NORTH
+        robotService.executeCommand(
+            RobotCommandType.PLACE,
+            RobotPlace(2, 2, Direction.NORTH)
         )
     }
 
@@ -59,7 +58,7 @@ class RobotShould {
 
     @Test
     fun `move up when the direction is north`(){
-        robotService.move(robot)
+        robotService.executeCommand(RobotCommandType.MOVE)
         assertEquals("2,3,NORTH" , robotService.report(robot))
     }
 
@@ -67,7 +66,7 @@ class RobotShould {
     @ValueSource(ints = [1, 2, 3, 4]) // Number of times to move up
     fun `stop moving up when robot reaches the edge`(movement: Int){
         repeat(movement) {
-            robotService.move(robot)
+            robotService.executeCommand(RobotCommandType.MOVE)
         }
         when (movement % 5) {
             1 -> assertEquals("2,3,NORTH", robotService.report(robot))
@@ -79,17 +78,17 @@ class RobotShould {
 
     @Test
     fun `move right when direction is east`(){
-        robotService.right(robot)
-        robotService.move(robot)
+        robotService.executeCommand(RobotCommandType.RIGHT)
+        robotService.executeCommand(RobotCommandType.MOVE)
         assertEquals("3,2,EAST" , robotService.report(robot))
     }
 
     @ParameterizedTest
     @ValueSource(ints = [1, 2, 3, 4]) // Number of times to move right
     fun `stop moving right when robot reaches the edge`(movement: Int){
-        robotService.right(robot)
+        robotService.executeCommand(RobotCommandType.RIGHT)
         repeat(movement) {
-            robotService.move(robot)
+            robotService.executeCommand(RobotCommandType.MOVE)
         }
         when (movement % 5) {
             1 -> assertEquals("3,2,EAST", robotService.report(robot))
@@ -101,17 +100,17 @@ class RobotShould {
 
     @Test
     fun `move left when direction is west`() {
-        robotService.left(robot)
-        robotService.move(robot)
+        robotService.executeCommand(RobotCommandType.LEFT)
+        robotService.executeCommand(RobotCommandType.MOVE)
         assertEquals("1,2,WEST" , robotService.report(robot))
     }
 
     @ParameterizedTest
     @ValueSource(ints = [1, 2, 3, 4]) // Number of times try to move up
     fun `stop moving left when robot reaches the edge`(movement: Int){
-        robotService.left(robot)
+        robotService.executeCommand(RobotCommandType.LEFT)
         repeat(movement) {
-            robotService.move(robot)
+            robotService.executeCommand(RobotCommandType.MOVE)
         }
         when (movement % 5) {
             1 -> assertEquals("1,2,WEST", robotService.report(robot))
@@ -123,19 +122,19 @@ class RobotShould {
 
     @Test
     fun `move down when direction is south`() {
-        robotService.left(robot)
-        robotService.left(robot)
-        robotService.move(robot)
+        robotService.executeCommand(RobotCommandType.LEFT)
+        robotService.executeCommand(RobotCommandType.LEFT)
+        robotService.executeCommand(RobotCommandType.MOVE)
         assertEquals("2,1,SOUTH" , robotService.report(robot))
     }
 
     @ParameterizedTest
     @ValueSource(ints = [1, 2, 3, 4]) // Number of times try to move down
     fun `stop moving down when robot reaches the edge`(movement: Int){
-        robotService.left(robot)
-        robotService.left(robot)
+        robotService.executeCommand(RobotCommandType.LEFT)
+        robotService.executeCommand(RobotCommandType.LEFT)
         repeat(movement) {
-            robotService.move(robot)
+            robotService.executeCommand(RobotCommandType.MOVE)
         }
         when (movement % 5) {
             1 -> assertEquals("2,1,SOUTH", robotService.report(robot))

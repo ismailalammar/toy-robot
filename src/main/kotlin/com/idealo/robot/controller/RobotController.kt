@@ -1,5 +1,6 @@
 package com.idealo.robot.controller
 
+import com.idealo.robot.domain.RobotCommandType
 import com.idealo.robot.model.Robot
 import com.idealo.robot.model.RobotPlace
 import com.idealo.robot.service.RobotService
@@ -17,19 +18,19 @@ class RobotController(
 
     @PostMapping("/place")
     fun place(@RequestBody robotPlace: RobotPlace) {
-        robotService.place(robot, robotPlace.x, robotPlace.y, robotPlace.facing)
+        robotService.executeCommand(RobotCommandType.PLACE, robotPlace)
     }
     @PostMapping("/left")
     fun left() {
-        robotService.left(robot)
+        robotService.executeCommand(RobotCommandType.LEFT)
     }
     @PostMapping("/right")
     fun right() {
-        robotService.right(robot)
+        robotService.executeCommand(RobotCommandType.RIGHT)
     }
     @PostMapping("/move")
     fun move() {
-        robotService.move(robot)
+        robotService.executeCommand(RobotCommandType.MOVE)
     }
     @PostMapping("/report")
     fun report() : String {
