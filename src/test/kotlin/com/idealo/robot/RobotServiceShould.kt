@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
-class RobotShould {
+class RobotServiceShould {
     @Autowired private lateinit var robotService: RobotService
     @Autowired private lateinit var robot: Robot
 
